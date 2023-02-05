@@ -4,7 +4,7 @@
     "description": "The API server for a Teams tab app",
     "main": "app.js",
     "scripts": {
-        "start": "node server.js"
+        "start": "nodemon server.js"
     },
     "author": "",
     "license": "ISC",
