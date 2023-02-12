@@ -3,10 +3,10 @@
 This repo contains a series of samples to help understand how to build a Microsoft Teams Tab app that integrates with
  Azure AD authentication and authorization. It progressively builds up auth functionalities as following:
 
-1. It starts with a [regular web app](./GetMailWeb/) that accesses Microsoft Graph API,
-2. then [enables it to be integrated in a Teams Tab](./GetMailWebTab/),
-3. then improves the auth experience such that the user sees the [Tab with data populated without any popup](./GetMailWebTabSSO/) after navigating away and back to the Tab.
-4. The last example is [integrates a SAML app into Teams](./SamlSampleTab/).
+1. It starts with a [regular web app](./Tab_01_GetMailWeb/) that accesses Microsoft Graph API,
+2. then [enables it to be integrated in a Teams Tab](./Tab_02_GetMailTab/),
+3. then improves the auth experience such that the user sees the [Tab with data populated without any popup](./Tab_03_GetMailSSO/) after navigating away and back to the Tab.
+4. The last example is [integrates a SAML app into Teams](./Tab_04_SAML/).
 
 The motivations for building these samples are the following:
 

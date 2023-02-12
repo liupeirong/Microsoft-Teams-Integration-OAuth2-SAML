@@ -1,7 +1,7 @@
 # Single-Page-App integrated with Microsoft Teams
 
-This sample builds on top of the [single-page-app (SPA) that reads user's email from Microsoft Graph](../GetMailWeb/),
- and integrates it into a Microsoft Teams Tab. It intentionally doesn't yet implement [Microsoft Teams' notion of single-sign-on](https://learn.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/authentication/tab-sso-overview) so we can clearly show the distinct meaning of SSO in Teams in the [next sample](../GetMailWebTabSSO/).
+This sample builds on top of the [single-page-app (SPA) that reads user's email from Microsoft Graph](../Tab_01_GetMailWeb/),
+ and integrates it into a Microsoft Teams Tab. It intentionally doesn't yet implement [Microsoft Teams' notion of single-sign-on](https://learn.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/authentication/tab-sso-overview) so we can clearly show the distinct meaning of SSO in Teams in the [next sample](../Tab_03_GetMailSSO/).
 
 This app is refactored from the [tab-aad-msal2 sample](https://github.com/pnp/teams-dev-samples/tree/main/samples/tab-aad-msal2).
  It's aimed to help understand the following when integrating auth with Teams:
@@ -12,7 +12,7 @@ This app is refactored from the [tab-aad-msal2 sample](https://github.com/pnp/te
   * Add [Tab.js](src/components/Tab.js) which the Teams tab will [route](src/components/App.js#L52) to.
   * Instead of [AuthService.js](src/services/AuthService.js) that redirects the user to log in, added [TeamsAuthService.js](src/services/TeamsAuthService.js) that [pops up a dialog](src/components/TeamsAuthPopup.js) for users to log in.
 
-If you registered an application in Azure AD in the [previous sample](../GetMailWeb/), you don't have to do it again unless you changed any configurations.
+If you registered an application in Azure AD in the [previous sample](../Tab_01_GetMailWeb/), you don't have to do it again unless you changed any configurations.
  Otherwise, register it same as before. You can run it locally same as before.
 
 To run the app in Teams, whether in the browser or Teams App,
@@ -24,4 +24,4 @@ To run the app in Teams, whether in the browser or Teams App,
 5. Navigate away to another tab and navigate back. You'll click on `Get Mail` again. This time an auth dialog will pop up, but it will disappear without you having to enter credentials.
 
 This is the experience when a single-page-app is not integrated in [Teams' notion of SSO](https://learn.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/authentication/tab-sso-overview).
- In the [next sample](../GetMailWebTabSSO/), we will demonstrate how to enable SSO.
+ In the [next sample](../Tab_03_GetMailSSO/), we will demonstrate how to enable SSO.
