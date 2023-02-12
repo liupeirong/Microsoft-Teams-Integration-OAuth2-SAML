@@ -1,69 +1,50 @@
-# plain-old-bot
+# Overview
 
-echo
+This is a simple Echo Bot that's created following Microsoft [Bot Framework SDK doc for Javascript](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-quickstart-create-bot?view=azure-bot-service-4.0&tabs=javascript%2Cvs).
+ It doesn't have any context of Microsoft Teams. The reason we include it here is to make it clearer
+ how it's different from a bot built for Teams in later samples.
 
-This bot has been created using [Bot Framework](https://dev.botframework.com), it shows how to create a simple bot that accepts input from the user and echoes it back.
+To get started, all you need to do is to follow the above mentioned Bot Framework SDK doc.
+ However, there are a few concepts and gotchas that might be confusing to someone who's new to Bot development.
 
-## Prerequisites
+## Do I need an Azure subscription and ngrok to develop a bot running on localhost?
 
-- [Node.js](https://nodejs.org) version 10.14.1 or higher
+No, you don't need either. In fact, if you already registered the Bot in Azure AD,
+ and if you test with the [Bot Framework Emulator](https://github.com/microsoft/BotFramework-Emulator/blob/master/README.md)
+ also running on localhost, you need to leave the environment variables `MicrosoftAppId` and `MicrosoftAppPassword` empty.
+ Otherwise the Emulator will get an authentication error.
 
-    ```bash
-    # determine node version
-    node --version
-    ```
+If you are running `ngrok` to direct a public DNS to your localhost, when testing with
+ the Emulator on the same localhost, you can't use the ngrok DNS name,
+ use localhost instead and check `bypass ngrok for local address`.
 
-## To run the bot
+## If I expose a public DNS or IP for my Bot endpoint, do I need ngrok?
 
-- Install modules
+Theoratically no. However, your endpoint must meet certain requirements:
 
-    ```bash
-    npm install
-    ```
+1. It has to be `https` not `http`.
+2. The SSL certificate can't be a self-signed certificate.
 
-- Start the bot
+If you can't meet these requirements, use `ngrok` to test the bot outside localhost using Web Chat,
+ or from a channel such as Microsoft Teams as described below.
 
-    ```bash
-    npm start
-    ```
+## If my bot runs outside of Azure, can I still build it using Microsoft Bot Framework?
 
-## Testing the bot using Bot Framework Emulator
+Yes, however, it might not be obvious how you register the bot. Assuming you don't have an Azure subscription,
+ you can't go to Azure portal to create an Azure Bot Service. But if you go to the [Bot Framework dev portal](https://dev.botframework.com),
+ __My bots__, and __Create a bot__, the only option is to create a bot in Azure Bot Service.
+ To register a bot outside of Azure, go to this URL directly `https://dev.botframework.com/bots/new`.
 
-[Bot Framework Emulator](https://github.com/microsoft/botframework-emulator) is a desktop application that allows bot developers to test and debug their bots on localhost or running remotely through a tunnel.
+Note that you still need Azure AD to register an app for your bot. It's completely fine to have a
+ free Azure AD account without an Azure subscription.
 
-- Install the Bot Framework Emulator version 4.9.0 or greater from [here](https://github.com/Microsoft/BotFramework-Emulator/releases)
+Whether you register your bot in the Bot Framework dev portal or by creating an Azure Bot Service, the effect is the same.
+ Where your bot actually runs is separate from where it's registered.
 
-### Connect to the bot using Bot Framework Emulator
+## How do I test my bot from outside localhost?
 
-- Launch Bot Framework Emulator
-- File -> Open Bot
-- Enter a Bot URL of `http://localhost:3978/api/messages`
+First of all, you need to run `ngrok`, or, expose a publicly reachable `https` endpoint with a publicly trusted certificate.
 
-## Deploy the bot to Azure
-
-To learn more about deploying a bot to Azure, see [Deploy your bot to Azure](https://aka.ms/azuredeployment) for a complete list of deployment instructions.
-
-## Gotchas
-
-- Emulator on the same localhost as the bot doesn't work with ngrok. It only works when you bypass ngrok for local address and leave AppIds etc to null.
-- Web Chat only work with a trusted certificate. Exposing your VM public endpoint with self-signed certificate doesn't work.
-- Registering in dev.botframework.com/bots/new is the same as registering in Azure Bot Service. Use the latter instead. You don't have to run the Bot in Azure.
-- The bot app can be a single tenant, say tenantA. It can be registered in an Azure Bot Service in tenantB. It can connect to a Graph API in tenantC.
-- TeamsFx only reads BOT_ID and BOT_PASSWORD environment variables, not MicrosoftAppId ...
-- TeamsFx doesn't run dotenv. Environment variables must be set in the environment. VSCode uses env-cmd to set the env variables.
-  
-## Further reading
-
-- [Bot Framework Documentation](https://docs.botframework.com)
-- [Bot Basics](https://docs.microsoft.com/azure/bot-service/bot-builder-basics?view=azure-bot-service-4.0)
-- [Dialogs](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-concept-dialog?view=azure-bot-service-4.0)
-- [Gathering Input Using Prompts](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-prompts?view=azure-bot-service-4.0)
-- [Activity processing](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-concept-activity-processing?view=azure-bot-service-4.0)
-- [Azure Bot Service Introduction](https://docs.microsoft.com/azure/bot-service/bot-service-overview-introduction?view=azure-bot-service-4.0)
-- [Azure Bot Service Documentation](https://docs.microsoft.com/azure/bot-service/?view=azure-bot-service-4.0)
-- [Azure CLI](https://docs.microsoft.com/cli/azure/?view=azure-cli-latest)
-- [Azure Portal](https://portal.azure.com)
-- [Language Understanding using LUIS](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/)
-- [Channels and Bot Connector Service](https://docs.microsoft.com/en-us/azure/bot-service/bot-concepts?view=azure-bot-service-4.0)
-- [Restify](https://www.npmjs.com/package/restify)
-- [dotenv](https://www.npmjs.com/package/dotenv)
+* If you registered the bot in Azure Bot Service, you can select your bot to [Test in Web Chat](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-troubleshoot-bot-configuration?view=azure-bot-service-4.0#test-in-web-chat) in the Azure portal.
+* If you registered the bot in the Bot Framework dev portal, you can select your bot and click on __Test__.
+* You can also add Microsoft Teams as a channel to your bot. You can [test the bot in Teams without registering a Teams app](https://learn.microsoft.com/en-us/azure/bot-service/channel-connect-teams?view=azure-bot-service-4.0) in the Azure portal. The Bot Framework dev portal also provides the Teams url if you click on __Get bot embed codes__ for Teams.
