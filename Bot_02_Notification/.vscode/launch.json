@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Bot",
+            "type": "node",
+            "request": "attach",
+            "port": 9239,
+            "restart": true,
+            "presentation": {
+                "hidden": true,
+            },
+            "internalConsoleOptions": "neverOpen"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug",
+            "configurations": [
+                "Attach to Bot"
+            ],
+            "preLaunchTask": "Start Teams App Locally",
+            "stopAll": true
+        }
+    ]
+}

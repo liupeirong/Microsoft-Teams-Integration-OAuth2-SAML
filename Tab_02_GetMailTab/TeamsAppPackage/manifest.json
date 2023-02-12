@@ -23,7 +23,16 @@
         "full": "Learn how to turn React to Teams Tab app"
     },
     "accentColor": "#FFFFFF",
-    "bots": [],
+    "bots": [
+        {
+            "botId": "<Your_Bot_ID>",
+            "scopes": [
+                "personal"
+            ],
+            "supportsFiles": false,
+            "isNotificationOnly": false
+        }
+    ],
     "composeExtensions": [],
     "configurableTabs": [],
     "staticTabs": [
