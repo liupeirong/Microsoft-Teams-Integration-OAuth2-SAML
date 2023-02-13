@@ -1,10 +1,10 @@
 # Web app integrated with Microsoft Teams with Single-Sign-On (SSO)
 
-We've gone from the [first sample of a vanilla single-page-app (SPA)](../GetMailWeb/) to the
- [second sample of integrating the SPA into a Microsoft Teams Tab](../GetMailWebTab/).
+We've gone from the [first sample of a vanilla single-page-app (SPA)](../Tab_01_GetMailWeb/) to the
+ [second sample of integrating the SPA into a Microsoft Teams Tab](../Tab_02_GetMailTab/).
  In this sample, we further demonstrate what it means to [enable SSO when integrating with Teams](https://learn.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/authentication/tab-sso-overview).
 
-The [previous sample](../GetMailWebTab/) still relies on the SPA app to log the user in and obtain the auth token to access backend APIs such as Graph API.
+The [previous sample](../Tab_02_GetMailTab/) still relies on the SPA app to log the user in and obtain the auth token to access backend APIs such as Graph API.
  When the user navigates away from the tab, the SPA state is lost. So when the user comes back, the app pops up for login again.
  The user doesn't have to enter credentials in subsequent logins as long as they are still in Teams because Azure AD has session cookies preserved across tabs.
 
@@ -53,6 +53,6 @@ npm start
 
 ## Summary
 
-We've gone from a [vanilla single-page-app](../GetMailWeb/), to [integrate it in a Teams Tab](../GetMailWebTab/),
+We've gone from a [vanilla single-page-app](../Tab_01_GetMailWeb/), to [integrate it in a Teams Tab](../Tab_02_GetMailTab/),
  to enabling single-sign-on in this sample so the user doesn't need to log in again once they are in Teams.
- In the [next sample](../SamlSampleTab/) we'll demonstrate how to integrate a SAML web app with Teams.
+ In the [next sample](../Tab_04_SAML/) we'll demonstrate how to integrate a SAML web app with Teams.

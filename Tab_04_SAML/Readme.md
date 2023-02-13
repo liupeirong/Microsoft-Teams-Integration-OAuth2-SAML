@@ -1,7 +1,7 @@
 # Integrate SAML web app with Teams
 
-In the previous samples, we went from a vanilla [single-page-app with OAuth2 PKCE auth](../GetMailWeb/),
- to [integrating it with a Microsoft Teams Tab](../GetMailWebTab/), to [enabling single-sign-on with Teams](../GetMailWebTabSSO/).
+In the previous samples, we went from a vanilla [single-page-app with OAuth2 PKCE auth](../Tab_01_GetMailWeb/),
+ to [integrating it with a Microsoft Teams Tab](../Tab_02_GetMailTab/), to [enabling single-sign-on with Teams](../Tab_03_GetMailSSO/).
  In the enterprise world, there are still a lot of applications using SAML. This sample demonstrates
  how to integrate a [SAML app](https://github.com/liupeirong/SAML-Sample-Azure-AD) with Teams.
 
@@ -14,7 +14,7 @@ Here's how authentication works in this sample:
 5. This Tab app can now [use the session id to make calls to the SAML App to get data](./src/components/Tab.js#L52).
 
 > Note that at the time of this writing, the [Teams' notion of SSO](https://learn.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/authentication/tab-sso-overview),
-> as demonstrated in the [previous sample](../GetMailWebTabSSO/), is not yet supported for SAML in that you
+> as demonstrated in the [previous sample](../Tab_03_GetMailSSO/), is not yet supported for SAML in that you
 > [cannot exchange a Teams' auth token with a SAML token](https://learn.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/authentication/tab-sso-overview#known-limitations).
 
 ## The SAML App
@@ -43,5 +43,5 @@ npm start
 ```
 
 * Open a browser and navigate to `https://localhost:3000` to verify everything works as a standalone web app.
-* Upload the manifest of this app to Teams if you haven't already. This is same as in the [previous sample](../GetMailWebTab/).
+* Upload the manifest of this app to Teams if you haven't already. This is same as in the [previous sample](../Tab_02_GetMailTab/).
 * Navigate to the Teams tab for this app, it will prompt you to log in, then displays your SAML assertion. Once logged in, you can also click a button to retrieve tasks from the SAML App.
