@@ -28,7 +28,11 @@ I removed the following auto-generated VSCode tasks so you perform them manually
 * __Build & upload Teams manifest__.
   * A Teams app can support both Tabs and Bots, you don't have to create a Teams App manifest separately for a bot. For example, we created a [Teams App manifest in our Teams Tab sample](../Tab_02_GetMailTab/TeamsAppPackage/manifest.json). To enable this bot, all we need to do is to [add the Bot section](../Tab_02_GetMailTab/TeamsAppPackage/manifest.json#L26).
   * By default, the TeamsFx SDK creates a file `.notification.localstore.json` to store the conversation context. As you re-register the bot or the Teams App during development, this context can go out of sync and you may get an error on decrypting the conversation id. You need to delete this file, and it will be re-created when you reload the Teams App.
-* `F5` will starts the bot service and attaches the debugger.
+* `F5` will start the bot service and attaches the debugger.
+
+## To run the bot
+
+Go to `/repo_root/Bot_02_Notification/bot`, run `npm run dev:teamsfx`.
 
 ## Changes to the code
 
@@ -55,6 +59,7 @@ In this example, we demonstrate using a single-tenant app. Note that when you re
 ### Which Azure AD tenant should I register the bot, the Teams App, the Graph API, and where do I run the bot?
 
 * You can register your bot in Azure AD `tenant A`. This is for the Bot Framework Service to talk to your bot. This can be either a multi-tenant or single-tenant app.
-* Your Teams can run in `tenant B` where you have Microsoft 365 license.
+* Your Teams users can be in `tenant B` where they have Microsoft 365 license.
 * Your bot can run in Azure in `tenant C` or not in Azure at all. All the Bot Framework Service needs to know is its endpoint when you registered it.
-* Your bot can connect to, for example, Microsoft Graph API by [creating an OAuth connection](https://learn.microsoft.com/en-us/azure/bot-service/bot-builder-authentication?view=azure-bot-service-4.0&tabs=userassigned%2Caadv2%2Ccsharp#create-the-azure-ad-identity-provider) in `tenant D`. Will create a sample for this scenario in the near future.
+* Your bot can access, for example, Microsoft Graph API in `tenant D` as a confidential client.
+* Your bot can access, for example, Microsoft Graph API [on behalf of the user](https://learn.microsoft.com/en-us/azure/bot-service/bot-builder-concept-authentication?view=azure-bot-service-4.0), by [adding authentication](https://learn.microsoft.com/en-us/azure/bot-service/bot-builder-authentication?view=azure-bot-service-4.0). If the bot is a Teams bot, it can [achieve SSO](https://learn.microsoft.com/en-us/microsoftteams/platform/bots/how-to/authentication/bot-sso-overview) because the user is already signed into Teams.
