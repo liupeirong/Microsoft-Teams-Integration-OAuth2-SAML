@@ -11,12 +11,8 @@ To get started, all you need to do is to follow the above mentioned Bot Framewor
 
 No, you don't need either. In fact, if you already registered the Bot in Azure AD,
  and if you test with the [Bot Framework Emulator](https://github.com/microsoft/BotFramework-Emulator/blob/master/README.md)
- also running on localhost, you need to leave the environment variables `MicrosoftAppId` and `MicrosoftAppPassword` empty.
+ also running on localhost, you need to leave the environment variables `MicrosoftAppType`, `MicrosoftAppId` and `MicrosoftAppPassword` empty.
  Otherwise the Emulator will get an authentication error.
-
-If you are running `ngrok` to direct a public DNS to your localhost, when testing with
- the Emulator on the same localhost, you can't use the ngrok DNS name,
- use localhost instead and check `bypass ngrok for local address`.
 
 ## If I expose a public DNS or IP for my Bot endpoint, do I need ngrok?
 
@@ -48,3 +44,7 @@ First of all, you need to run `ngrok`, or, expose a publicly reachable `https` e
 * If you registered the bot in Azure Bot Service, you can select your bot to [Test in Web Chat](https://learn.microsoft.com/en-us/azure/bot-service/bot-service-troubleshoot-bot-configuration?view=azure-bot-service-4.0#test-in-web-chat) in the Azure portal.
 * If you registered the bot in the Bot Framework dev portal, you can select your bot and click on __Test__.
 * You can also add Microsoft Teams as a channel to your bot. You can [test the bot in Teams without registering a Teams app](https://learn.microsoft.com/en-us/azure/bot-service/channel-connect-teams?view=azure-bot-service-4.0) in the Azure portal. The Bot Framework dev portal also provides the Teams url if you click on __Get bot embed codes__ for Teams.
+
+## How to run the bot locally?
+
+Go to `/repo_root/Bot_01_Echo`, run `npm start`.
