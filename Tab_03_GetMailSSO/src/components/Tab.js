@@ -27,7 +27,8 @@ class Tab extends React.Component {
   }
 
   ssoLoginSuccess = async (result) => {
-    console.log("SSO got result:", result);
+    // if all you want is a valid ID token, you can just use the result directly
+    console.log("SSO got id token:", result);
     this.exchangeClientTokenForServerToken(result);
   }
 
@@ -49,7 +50,7 @@ class Tab extends React.Component {
 
     // set proxy in package.json to go to localhost and avoid CORS
     const response = await fetch("/getGraphAccessToken", options)
-      .catch((err) => {
+          .catch((err) => {
         console.error("unhandled fetch error:", err);
       });
     console.log("response:", response);
@@ -64,7 +65,7 @@ class Tab extends React.Component {
         console.log(`ok response, no data: ${dataError}`)
       } else {
         this.setState(Object.assign({}, this.state, {
-          messages: data.value
+        messages: data.value
         }));
       }
     }

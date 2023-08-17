@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@azure/msal-browser": "^2.16.1",
+    "@azure/msal-browser": "^2.38.1",
     "@fluentui/react": "~0.45.0",
     "@microsoft/microsoft-graph-client": "^2.0.0",
     "@microsoft/teams-js": "^1.6.0",

@@ -59,6 +59,7 @@ class AuthService {
             this.request.scopes = scopes;
         }
         try {
+            // Note this is not possible without popup because of clickjacking
             this.msalClient.loginRedirect(this.request);
         }
         catch (err) {
@@ -74,7 +75,6 @@ class AuthService {
             this.request.scopes = scopes;
         }
         try {
-            console.log("getAccessToken scopes:", this.request.scopes);
             const resp = await this.msalClient.acquireTokenSilent(this.request);
             if (resp?.accessToken) {
                 return {
@@ -93,6 +93,23 @@ class AuthService {
             } else {
                 throw (error);
             }
+        }
+    }
+
+    // Call this to get the id token
+    getIDToken() {
+        console.log("request:", this.request)
+        this.request.account =
+            this.msalClient.getAccountByUsername(this.getUsername());
+        console.log("auth request:", this.request)
+        if (this.request?.account?.idToken) {
+            return {
+                username: this.getUsername(),
+                accessToken: this.request.account.idToken,
+                expiresOn: null,
+            };
+        } else {
+            return null;
         }
     }
 }
