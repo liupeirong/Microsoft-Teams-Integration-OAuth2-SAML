@@ -12,27 +12,34 @@ class TeamsAuthPopup extends React.Component {
             if (!AuthService.isLoggedIn()) {
               AuthService.login();
             } else {
-              // if all you need is an ID Token, you already have it
+              // if all you need is an ID Token,
               // let {username, accessToken, expiresOn} = AuthService.getIDToken();
               // const response = JSON.stringify({username, accessToken, expiresOn })
               // microsoftTeams.authentication.notifySuccess(response);
+
               // get the scopes parameters, assuming it's the first parameter in the format of ?scopes=User.Read,Mail.Read
               const params = window.location.href.split('?');
               const scopesParams = params.length > 1 ? params[1].split(/[=,]+/) : null;
               const scopes = scopesParams && scopesParams.length > 1 ? scopesParams.slice(1) : null;
               console.log("scopes from popup url:", scopes);
               AuthService.getAccessToken(scopes)
-              .then(({ username, accessToken, expiresOn }) => {
-              if (accessToken) {
-              const response = JSON.stringify({ username, accessToken, expiresOn })
-              microsoftTeams.authentication.notifySuccess(response);
-              } else {
-              microsoftTeams.authentication.notifyFailure("Unexpected failure - null token received");
-              }
+                .then(({ username, accessToken, expiresOn }) => {
+                  if (accessToken) {
+                    const response = JSON.stringify({
+                      username,
+                      accessToken,
+                      expiresOn,
+                    });
+                    microsoftTeams.authentication.notifySuccess(response);
+                  } else {
+                    microsoftTeams.authentication.notifyFailure(
+                      "Unexpected failure - null token received"
+                    );
+                  }
                 })
-              .catch((error) => {
-              microsoftTeams.microsoftTeams.notifyFailure(error);
-              });
+                .catch((error) => {
+                  microsoftTeams.microsoftTeams.notifyFailure(error);
+                });
             }
           }
         });
