@@ -8,6 +8,6 @@ export const msalConfig = {
   },
   cache: {
     cacheLocation: BrowserCacheLocation.SessionStorage,
-    storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
+    storeAuthStateInCookie: true, // Set this to "true" if you are having issues on IE11 or Edge
   }
 };
