@@ -58,6 +58,9 @@ class Tab extends React.Component {
           if (!this.state.accessToken) {
             // Might redirect the browser and not return; will redirect back if successful
             const user = await TeamsAuthService.getAccessToken(["Mail.Read"], microsoftTeams);
+            // if we only want an ID token, do the following. It won't get mails, but the token will be in the console.
+            //const user = await TeamsAuthService.getAccessToken(null, microsoftTeams);
+            console.log("accessToken:", user.accessToken)
             this.setState({
               accessToken: user.accessToken
             });
